@@ -16,6 +16,7 @@ const bookSchema = new Schema<IBook, Model<IBook>, IDeductCopies>(
 		description: { type: String, default: "" },
 		copies: { type: Number, required: true, min: [0, "Copies cannot be a negative number"] },
 		available: { type: Boolean, default: true },
+		image: { type: String, required: true },
 	},
 	{
 		versionKey: false,
