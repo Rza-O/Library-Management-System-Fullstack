@@ -2,7 +2,9 @@
 
 The Minimal Library Management System (Frontend) is a clean, responsive, and feature-rich client-side application built with React, TypeScript, Redux Toolkit Query (RTK Query), and Tailwind CSS. It allows users to manage books, perform CRUD operations, borrow books, and view a borrow summary without requiring authentication. The frontend interacts seamlessly with a RESTful API, leveraging RTK Query for efficient state management and API integration.This project emphasizes a minimalist UI, intuitive user experience, and robust type safety, making it suitable for small-scale library management needs. 
 
-
+## 🌐 Live Links: 
+- **Frontend**: https://libraboxlms.vercel.app/
+- **Backend**: https://libraboxlmsserver.vercel.app/
 
 ## 🚀 Features
 
