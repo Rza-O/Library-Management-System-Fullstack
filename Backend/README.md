@@ -1,4 +1,4 @@
-# 📚 Library Management System
+# 📚 Library Management System Backend
 
 A full-featured RESTful Library Management System built with **Node.js**, **Express**, **TypeScript**, and **MongoDB (Mongoose)**. It supports core functionalities such as book management, borrowing system with availability tracking, data aggregation, and flexible querying.
 
