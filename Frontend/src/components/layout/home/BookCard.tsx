@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDeleteBookMutation } from "@/redux/api/baseApi";
 import type { IBook } from "@/types";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import Swal from 'sweetalert2'
+import { EditBookModal } from "./modals/EditBookModal";
 
 interface IBookCardProp {
    book: IBook,
@@ -70,14 +71,7 @@ const BookCard = ({ book, onView }: IBookCardProp) => {
                   >
                      <Eye className="h-5 w-5" />
                   </Button>
-                  <Button
-                     size="icon"
-                     variant="ghost"
-                     className="text-yellow-500 hover:bg-yellow-600 hover:text-white transition"
-                     onClick={() => console.log(`Edit book ${book.isbn}`)}
-                  >
-                     <Pencil className="h-5 w-5" />
-                  </Button>
+                  <EditBookModal book={book} />
                   <Button
                      size="icon"
                      variant="ghost"
