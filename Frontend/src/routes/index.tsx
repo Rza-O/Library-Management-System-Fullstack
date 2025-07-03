@@ -1,7 +1,7 @@
 import App from "@/App";
-import AddBook from "@/pages/AddBook";
 import AllBooks from "@/pages/AllBooks";
 import Home from "@/pages/Home";
+import Summary from "@/pages/Summary";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
             Component: AllBooks
          },
          {
-            path: 'add-book',
-            Component: AddBook
+            path: 'summary',
+            Component: Summary
          }
       ]
    }

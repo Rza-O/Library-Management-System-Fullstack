@@ -16,17 +16,28 @@ booksRoutes.post("/", async (req: Request, res: Response) => {
 
 booksRoutes.get("/", async (req: Request, res: Response) => {
 	try {
-		const { filter, sortBy, sort, limit } = req.query;
+		const { filter, sortBy, sort, limit, page } = req.query;
 
 		const filterCondition = filter ? { genre: filter } : {};
 		const limitCondition = limit ? parseInt(limit as string) : 10;
+		const pageCondition = page ? parseInt(page as string) : 1;
+		const skip = (pageCondition - 1) * limitCondition;
 
-		let query = Book.find(filterCondition).limit(limitCondition);
+		let query = Book.find(filterCondition).skip(skip).limit(limitCondition);
 
 		if (sortBy) query = query.sort({ [sortBy as string]: sort === "desc" ? -1 : 1 });
 
 		const books = await query;
-		res.status(200).json({ success: true, message: "Books retrieved successfully", data: books });
+		const total = await Book.countDocuments(filterCondition);
+
+		res.status(200).json({
+			success: true,
+			message: "Books retrieved successfully",
+			data: books,
+			total,
+			page: pageCondition,
+			limit: limitCondition,
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(404).json({ message: "Operation failed", success: false, error });

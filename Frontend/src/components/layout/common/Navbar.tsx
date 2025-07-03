@@ -2,18 +2,38 @@ import { Link } from "react-router";
 
 const Navbar = () => {
    return (
-      <div className="flex h-16 justify-between items-center">
-         {/* Logo */}
-         <div className="p-4">
-            <h1 className="text-xl lg:text-4xl"><strong className="text-red-500">Libra</strong>Box</h1>
+      <nav className="bg-black border-b border-red-500/20">
+         <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3 md:py-4">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-1">
+               <h1 className="text-xl md:text-3xl font-bold">
+                  <span className="text-red-500">Libra</span>Box
+               </h1>
+            </Link>
+
+            {/* Links */}
+            <div className="flex gap-4 items-center text-sm md:text-base">
+               <Link
+                  to="/"
+                  className="hover:text-red-500 transition-colors"
+               >
+                  Home
+               </Link>
+               <Link
+                  to="/all-books"
+                  className="hover:text-red-500 transition-colors"
+               >
+                  Books
+               </Link>
+               <Link
+                  to="/summary"
+                  className="hover:text-red-500 transition-colors"
+               >
+                  Summary
+               </Link>
+            </div>
          </div>
-         {/* Links */}
-         <div className="gap-2 flex p-4">
-            <Link to='/' className="text-sm lg:text-xl hover:text-red-500">Home</Link>
-            <Link to='/all-books' className="text-sm lg:text-xl hover:text-red-500">Books</Link>
-            <Link to='/add-book' className="text-sm lg:text-xl hover:text-red-500">Summary</Link>
-         </div>
-      </div>
+      </nav>
    );
 };
 

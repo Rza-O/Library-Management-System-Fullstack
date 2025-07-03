@@ -8,32 +8,39 @@ import { useState } from "react";
 import ViewModal from "./modals/ViewModal";
 
 const BookSection = () => {
-
-   const { data: books, isLoading } = useGetBooksQuery(undefined);
+   const { data: books, isLoading } = useGetBooksQuery({ limit: 9 });
    const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
 
    if (isLoading) {
-      return <Loading />
+      return <Loading />;
    }
 
    return (
-      <div className="text-center m-4">
-         <h1 className="mb-2 text-sm md:text-xl lg:text-3xl">Our <strong className="text-red-500 italic">Collection</strong></h1>
-         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3  ">
-            {!isLoading && books?.data?.map((book: IBook) => (
-               <BookCard key={book.isbn} book={book} onView={() => setSelectedBookId(book._id)} />
+      <section className="max-w-7xl mx-auto px-4 py-8 text-center">
+         <h1 className="mb-6 text-2xl md:text-4xl font-semibold">
+            Our <span className="text-red-500 italic">Collection</span>
+         </h1>
+
+         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {books?.data?.map((book: IBook) => (
+               <BookCard
+                  key={book._id}
+                  book={book}
+                  onView={() => setSelectedBookId(book._id)}
+               />
             ))}
          </div>
-         <div className="mt-4">
-            <Link to='all-books'>
-               <Button className="rounded-2xl shadow-lg hover:shadow-red-600 transition">See more</Button>
+
+         <div className="mt-10">
+            <Link to="/all-books" aria-label="See more books">
+               <Button className="rounded-2xl shadow-lg hover:shadow-red-600 transition-transform transform hover:scale-105">
+                  See More
+               </Button>
             </Link>
          </div>
-         <ViewModal
-            bookId={selectedBookId}
-            onClose={() => setSelectedBookId(null)}
-         />
-      </div>
+
+         <ViewModal bookId={selectedBookId} onClose={() => setSelectedBookId(null)} />
+      </section>
    );
 };
 

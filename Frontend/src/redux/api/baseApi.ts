@@ -6,7 +6,7 @@ export const baseApi = createApi({
 	tagTypes: ["books", "book"],
 	endpoints: (build) => ({
 		getBooks: build.query({
-			query: () => "/books",
+			query: ({ page = 1, limit = 10 }) => `/books?page=${page}&limit=${limit}`,
 			providesTags: ["books"],
 		}),
 		getSingleBook: build.query({
@@ -44,8 +44,18 @@ export const baseApi = createApi({
 			}),
 			invalidatesTags: ["books"],
 		}),
+		getSummary: build.query({
+			query: () => "/borrow",
+		}),
 	}),
 });
 
-export const { useGetBooksQuery, useGetSingleBookQuery, useDeleteBookMutation, useUpdateBookMutation, useAddBookMutation, useBorrowBookMutation } =
-	baseApi;
+export const {
+	useGetBooksQuery,
+	useGetSingleBookQuery,
+	useDeleteBookMutation,
+	useUpdateBookMutation,
+	useAddBookMutation,
+	useBorrowBookMutation,
+	useGetSummaryQuery,
+} = baseApi;
