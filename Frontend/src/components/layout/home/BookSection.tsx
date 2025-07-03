@@ -16,9 +16,6 @@ const BookSection = () => {
       return <Loading />
    }
 
-
-   console.log("🚀 ~ BookSection ~ books:", books)
-
    return (
       <div className="text-center m-4">
          <h1 className="mb-2 text-sm md:text-xl lg:text-3xl">Our <strong className="text-red-500 italic">Collection</strong></h1>

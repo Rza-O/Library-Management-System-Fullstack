@@ -6,6 +6,7 @@ import type { IBook } from "@/types";
 import { Eye, Trash2 } from "lucide-react";
 import Swal from 'sweetalert2'
 import { EditBookModal } from "./modals/EditBookModal";
+import { BorrowBookModal } from "./modals/BorrowBookModal";
 
 interface IBookCardProp {
    book: IBook,
@@ -52,7 +53,7 @@ const BookCard = ({ book, onView }: IBookCardProp) => {
                className="w-full md:w-32 h-48 object-cover rounded-xl border border-red-500"
             />
             <div className="flex flex-col justify-between">
-               <p className="text-sm text-gray-300 mb-2 line-clamp-4">{book.description}</p>
+               <p className="text-sm text-gray-300 mb-2 line-clamp-4 break-words">{book.description}</p>
                <div className="flex items-center justify-center gap-2 mt-2 flex-wrap">
                   <Badge className="bg-red-600 text-white capitalize">{book.genre.toLowerCase()}</Badge>
                   <Badge className={book.available ? "bg-green-600" : "bg-gray-600"}>
@@ -71,6 +72,7 @@ const BookCard = ({ book, onView }: IBookCardProp) => {
                   >
                      <Eye className="h-5 w-5" />
                   </Button>
+                  <BorrowBookModal book={book} />
                   <EditBookModal book={book} />
                   <Button
                      size="icon"
