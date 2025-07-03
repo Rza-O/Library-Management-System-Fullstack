@@ -78,7 +78,7 @@ export const AddBookModal = () => {
          <DialogTrigger asChild>
             <Button className="rounded-2xl shadow-lg hover:shadow-red-600 transition "><Plus />Add Book</Button>
          </DialogTrigger>
-         <DialogContent>
+         <DialogContent className="bg-black text-white max-w-lg md:max-w-2xl rounded-xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
                <DialogTitle>Add New Book</DialogTitle>
             </DialogHeader>

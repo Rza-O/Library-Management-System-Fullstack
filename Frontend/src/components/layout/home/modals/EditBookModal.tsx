@@ -74,7 +74,7 @@ export const EditBookModal = ({ book }: Props) => {
                <Pencil className="h-5 w-5" />
             </Button>
          </DialogTrigger>
-         <DialogContent>
+         <DialogContent className="bg-black text-white max-w-lg md:max-w-2xl rounded-xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
                <DialogTitle>Edit Book</DialogTitle>
             </DialogHeader>
