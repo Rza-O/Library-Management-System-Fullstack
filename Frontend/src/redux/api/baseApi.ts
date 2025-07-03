@@ -12,7 +12,14 @@ export const baseApi = createApi({
 		getSingleBook: build.query({
 			query: (id: string) => `/books/${id}`,
 		}),
+		deleteBook: build.mutation({
+			query: (id: string) => ({
+				method: "DELETE",
+				url: `/books/${id}`,
+			}),
+			invalidatesTags: ["books"],
+		}),
 	}),
 });
 
-export const { useGetBooksQuery, useGetSingleBookQuery } = baseApi;
+export const { useGetBooksQuery, useGetSingleBookQuery, useDeleteBookMutation } = baseApi;

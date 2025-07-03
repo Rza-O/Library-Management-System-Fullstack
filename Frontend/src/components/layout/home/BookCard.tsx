@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useDeleteBookMutation } from "@/redux/api/baseApi";
 import type { IBook } from "@/types";
 import { Eye, Pencil, Trash2 } from "lucide-react";
+import Swal from 'sweetalert2'
 
 interface IBookCardProp {
    book: IBook,
@@ -10,6 +12,32 @@ interface IBookCardProp {
 }
 
 const BookCard = ({ book, onView }: IBookCardProp) => {
+
+   const [deleteBook] = useDeleteBookMutation();
+
+   const handleDelete = async () => {
+      const result = await Swal.fire({
+         title: "Are you sure?",
+         text: "You won't be able to recover this book!",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#f90000",
+         cancelButtonColor: "#6b7280",
+         confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+         try {
+            await deleteBook(book._id).unwrap();
+            Swal.fire("Deleted!", "The book has been deleted.", "success");
+         } catch (error) {
+            console.error(error);
+            Swal.fire("Error", "Something went wrong while deleting.", "error");
+         }
+      }
+   };
+
+
    return (
       <Card className="bg-black text-white rounded-2xl shadow-lg hover:shadow-red-600 transition">
          <CardHeader>
@@ -54,7 +82,7 @@ const BookCard = ({ book, onView }: IBookCardProp) => {
                      size="icon"
                      variant="ghost"
                      className="text-red-700 hover:bg-red-700 hover:text-white transition"
-                     onClick={() => console.log(`Delete book ${book.isbn}`)}
+                     onClick={handleDelete}
                   >
                      <Trash2 className="h-5 w-5" />
                   </Button>
