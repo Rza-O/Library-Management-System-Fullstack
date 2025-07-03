@@ -7,7 +7,7 @@ import { borrowRoutes } from "./app/controllers/borrow.controller";
 const app: Application = express();
 app.use(
 	cors({
-		origin: "http://localhost:5173",
+		origin: ["http://localhost:5173", "https://libraboxlms.vercel.app"],
 	})
 );
 app.use(express.json());
