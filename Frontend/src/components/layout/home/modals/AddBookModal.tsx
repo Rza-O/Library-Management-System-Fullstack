@@ -17,6 +17,7 @@ import { bookSchema, type BookFormData } from "@/validation/bookSchema";
 import { useAddBookMutation } from "@/redux/api/baseApi";
 import { Plus } from "lucide-react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 export const AddBookModal = () => {
    const [open, setOpen] = useState(false);
@@ -33,6 +34,7 @@ export const AddBookModal = () => {
    const [errors, setErrors] = useState<Partial<Record<keyof BookFormData, string>>>({});
 
    const [addBook, { isLoading }] = useAddBookMutation();
+   const navigate = useNavigate();
 
    const handleChange = (field: keyof BookFormData, value: string | number) => {
       setForm((prev) => ({ ...prev, [field]: value }));
@@ -64,6 +66,7 @@ export const AddBookModal = () => {
             copies: 1,
             image: "",
          });
+         navigate('/all-books')
       } catch (err) {
          toast.error("Uh Oh! Something went wrong!")
          console.error("Failed to add book:", err);

@@ -1,69 +1,85 @@
-# React + TypeScript + Vite
+# 📚 Library Management System Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Minimal Library Management System (Frontend) is a clean, responsive, and feature-rich client-side application built with React, TypeScript, Redux Toolkit Query (RTK Query), and Tailwind CSS. It allows users to manage books, perform CRUD operations, borrow books, and view a borrow summary without requiring authentication. The frontend interacts seamlessly with a RESTful API, leveraging RTK Query for efficient state management and API integration.This project emphasizes a minimalist UI, intuitive user experience, and robust type safety, making it suitable for small-scale library management needs.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **Public Routes**: All pages are accessible without authentication.
+- 🔄 **Book Management**:
+  - **Book List**: Displays books in a responsive table with columns for Title, Author, Genre, ISBN, Copies, Availability, Image and Actions (Edit, Delete, Borrow).
+  - **Add Book**: Form to create a new book with fields for Title, Author, Genre, ISBN, Description, Copies, Image and Availability.
+  - **Edit Book**: Pre-filled form to update book details, reflecting changes instantly in the UI.
+  - **Delete Book**: Confirmation dialog before removing a book.
+  - **Borrow Book**: Form to borrow a book with Quantity and Due Date fields, ensuring quantity does not exceed available copies.
 
-## Expanding the ESLint configuration
+- 📊 **Borrow Summary**: Aggregated view of borrowed books with Book Title, ISBN, and Total Quantity Borrowed.
+- ✅ **Responsive UI**: Fully responsive layout for mobile, tablet, and desktop devices using Tailwind CSS.
+- ⚙️ **Navigation**: Simple navbar with links to All Books, Add Book, and Borrow Summary.
+- ©️ **Footer**: Basic footer with site credits.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧱 Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: React + Vite + React Router (Data mode)
+- **Language**: TypeScript
+- **State Management**: Redux Toolkit + RTK Query
+- **Styling**: Tailwind CSS
+- **Form Validation**: Zod
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
+
+```plaintext
+├── public/                   # Static assets
+├── src/
+│   ├── redux/                # RTK Query API slices for book and borrow endpoints
+│   │   ├── store/            # Redux store configuration and slices
+│   ├── components/           # Reusable UI components (e.g., Navbar, Footer, BookTable)
+│   ├── pages/                # Page components (Home, All Books, BorrowSummary)
+│   ├── store/                # Redux store configuration and slices
+│   ├── types/                # TypeScript interfaces and types
+│   ├── App.tsx               # Main app component
+│   ├── index.tsx             # Entry point
+│   ├── main.css              # Tailwind CSS styles
+├── .gitignore                # Git ignore file
+├── package.json              # Project dependencies and scripts
+├── tsconfig.json             # TypeScript configuration
+├── README.md                 # This file
+
 ```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ✅ Business Logic
+- Book Availability: Books with 0 copies are marked unavailable.
+- Borrowing: Borrow quantity cannot exceed available copies; books become unavailable when copies reach 0.
+- Optimistic Updates: UI reflects changes instantly, with rollback on API failure.
+- Error Handling: User-friendly error messages via toast notifications.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+## ⚙️ Getting Started
+
+Follow these steps to set up and run the project locally.
+
+### 1️⃣ Prerequisites
+
+- **Node.js**: Version >= 18
+- A running backend API (e.g., Node.js + Express + MongoDB) with endpoints for books and borrows.
+
+### 2️⃣ Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Rza-O/Library-Management-System-Fullstack
+   cd /library-management-system/Frontend
+2. Install dependencies
+    ```bash
+    npm install
+3. Start the development server
+    ```bash
+    npm run dev
+    ```
+
+
+## 🙏🏽 Acknowledgments
+- Inspired by minimalist library management systems like BookLovers and PrintPress.
+- Built with  using React, Redux Toolkit Query, TypeScript, and Tailwind CSS.

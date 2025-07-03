@@ -17,6 +17,7 @@ import { Calendar as CalendarIcon, ShoppingBag } from "lucide-react";
 import type { IBook } from "@/types";
 import { useBorrowBookMutation } from "@/redux/api/baseApi";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 interface Props {
    book: IBook;
@@ -29,6 +30,7 @@ export const BorrowBookModal = ({ book }: Props) => {
    const [formError, setFormError] = useState<string | null>(null);
 
    const [borrowBook, { isLoading }] = useBorrowBookMutation();
+   const navigate = useNavigate();
 
    const handleBorrow = async () => {
       setFormError(null);
@@ -50,6 +52,7 @@ export const BorrowBookModal = ({ book }: Props) => {
          }).unwrap();
 
          toast.success("Book borrowed successfully!");
+         navigate('/summary');
          setOpen(false);
       } catch (error) {
          console.error(error);

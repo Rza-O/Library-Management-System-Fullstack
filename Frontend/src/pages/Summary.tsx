@@ -45,7 +45,7 @@ const Summary = () => {
                {!isLoading && data && data.data.length === 0 && (
                   <p className="text-center text-gray-400">No borrow summary found.</p>
                )}
-               {!isLoading && data && data.data.length > 0 && (
+               {!isLoading && data && data?.data.length > 0 && (
                   <div className="overflow-x-auto rounded-xl">
                      <Table className="min-w-full">
                         <TableHeader>

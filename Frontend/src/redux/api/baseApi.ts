@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
 	reducerPath: "baseApi",
 	baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
-	tagTypes: ["books", "book"],
+	tagTypes: ["books", "book", "borrow"],
 	endpoints: (build) => ({
 		getBooks: build.query({
 			query: ({ page = 1, limit = 10 }) => `/books?page=${page}&limit=${limit}`,
@@ -42,10 +42,11 @@ export const baseApi = createApi({
 				url: "/borrow",
 				body: data,
 			}),
-			invalidatesTags: ["books"],
+			invalidatesTags: ["books", "borrow"],
 		}),
 		getSummary: build.query({
 			query: () => "/borrow",
+			providesTags: ["borrow"],
 		}),
 	}),
 });
